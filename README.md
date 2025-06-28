@@ -35,4 +35,3 @@ Then run:
 
 ```
 
-https://roadmap.sh/projects/server-stats
