@@ -1,4 +1,4 @@
-name: CI for server-stats.sh
+name: CI for server-stats
 
 on:
   push:
@@ -11,21 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: Checkout repo
-       uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-     - name: Run ShellCheck (lint shell scripts)
-       uses: azohra/shellcheck-action@v0.3.0
-       with:
-         check_paths: server-stats.sh
+      - name: Lint with ShellCheck
+        run: shellcheck server-stats.sh
 
-     - name: Build Docker Image
-       run: docker build -t server-stats .
-
-     - name: Push Docker image
-       if: github.event_name == 'push'
-       run: |
-          docker tag server-stats docker.io/${{ secrets.DOCKER_USERNAME }}/server-stats:latest
-          docker push docker.io/${{ secrets.DOCKER_USERNAME }}/server-stats:latest
-       
-      
+      - name: Build Docker image
+        run: docker build -t server-stats .
