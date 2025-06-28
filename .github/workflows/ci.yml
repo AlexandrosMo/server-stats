@@ -1,4 +1,4 @@
-Name: CI for server-stats.sh
+name: CI for server-stats.sh
 
 on:
   push:
