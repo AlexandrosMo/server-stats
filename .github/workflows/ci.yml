@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Lint with ShellCheck
-        run: shellcheck server-stats.sh
+        run: shellcheck server-stats/server-stats.sh
 
       - name: Build Docker image
-        run: docker build -t server-stats .
+        run: docker build -t server-stats ./server-stats
