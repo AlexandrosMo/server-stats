@@ -14,8 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
       - name: Lint with ShellCheck
         run: shellcheck server-stats/server-stats.sh
 
       - name: Build Docker image
-        run: docker build -t server-stats ./server-stats
+        run: docker build -t alexandrosmo/server-stats:latest ./server-stats
+
+      - name: Run Docker container test
+        run: docker run --rm alexandrosmo/server-stats:latest /server-stats.sh
