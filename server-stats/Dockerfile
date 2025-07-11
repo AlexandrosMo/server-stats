@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get clean
 
 COPY server-stats.sh /server-stats.sh
+
 RUN chmod +x /server-stats.sh
 
 CMD ["/server-stats.sh"]
