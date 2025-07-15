@@ -11,4 +11,10 @@ RUN apt-get update && apt-get install -y bash procps && apt-get clean
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "app.py"]
+
+RUN chmod +x /app/server-stats.sh
+
+WORKDIR /app
+
+
+CMD ["./server-stats.sh"]
