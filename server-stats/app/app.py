@@ -2,11 +2,11 @@ from flask import Flask
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # Φορτώνει το .env
+load_dotenv() 
 
 app = Flask(__name__)
 
-PORT = int(os.getenv("PORT", 8081))  # default port 8081
+PORT = int(os.getenv("PORT", 8081))  
 
 @app.route('/')
 def home():
