@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  stats:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server-stats
+    tty: true
+    stdin_open: true
