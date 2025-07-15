@@ -1,0 +1,27 @@
+name: CI for server-stats
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Lint with ShellCheck
+        run: shellcheck server-stats/app/server-stats.sh
+
+      - name: Build Docker image
+        run: docker build -t alexandrosmo/server-stats:latest ./server-stats
+
+      - name: Run Docker container test
+        run: docker run --rm alexandrosmo/server-stats:latest /server-stats.sh
